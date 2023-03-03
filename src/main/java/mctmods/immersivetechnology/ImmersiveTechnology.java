@@ -81,11 +81,11 @@ public class ImmersiveTechnology {
 
 	public static CreativeTabs creativeTab = new CreativeTabs(MODID) {
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack createIcon() {
 			return ItemStack.EMPTY;
 		}
 		@Override
-		public ItemStack getIconItemStack() {
+		public ItemStack getIcon() {
 			return new ItemStack(ITContent.blockValve, 1, 0);
 		}
 	};

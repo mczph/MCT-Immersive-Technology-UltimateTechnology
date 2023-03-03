@@ -76,7 +76,7 @@ public class TileEntityBarrelSteel extends TileEntityIEBase implements ITickable
 		if(world.isRemote) return;
 		for(int index = 0; index < 2; index++) {
 			if(tank.getFluidAmount() > 0 && sideConfig[index] == 1) {
-				EnumFacing face = EnumFacing.getFront(index);
+				EnumFacing face = EnumFacing.byIndex(index);
 				IFluidHandler output = FluidUtil.getFluidHandler(world, getPos().offset(face), face.getOpposite());
 				if(output != null) {
 					if(sleep == 0) {
@@ -218,7 +218,7 @@ public class TileEntityBarrelSteel extends TileEntityIEBase implements ITickable
 		ItemStack stack = new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state));
 		NBTTagCompound tag = new NBTTagCompound();
 		writeTank(tag, true);
-		if(!tag.hasNoTags()) stack.setTagCompound(tag);
+		if(!tag.isEmpty()) stack.setTagCompound(tag);
 		return stack;
 	}
 

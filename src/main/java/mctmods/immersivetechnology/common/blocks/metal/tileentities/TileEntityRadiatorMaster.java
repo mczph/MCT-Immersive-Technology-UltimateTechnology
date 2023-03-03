@@ -180,7 +180,7 @@ public class TileEntityRadiatorMaster extends TileEntityRadiatorSlave implements
 	}
 
 	public void efficientMarkDirty() { // !!!!!!! only use it within update() function !!!!!!!
-		world.getChunkFromBlockCoords(this.getPos()).markDirty();
+		world.getChunk(this.getPos()).markDirty();
 	}
 
 	private boolean recipeLogic() {

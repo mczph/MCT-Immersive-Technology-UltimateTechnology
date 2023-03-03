@@ -76,7 +76,7 @@ public class TileEntitySolarReflectorMaster extends TileEntitySolarReflectorSlav
 		int zdiff = getPos().getZ() - towerCollectorPosition.getZ();
 		double xzdiff = Math.sqrt(xdiff * xdiff + zdiff * zdiff);
 
-		animationRotations = new float[]{(float)(Math.atan2(xdiff, zdiff) * 180 / Math.PI) + 90 * (getFacing().getHorizontalIndex() + ((getFacing().getFrontOffsetX() == 0) ? 0 : 2)), (float) (Math.abs(Math.atan2(ydiff, xzdiff) * 180 / Math.PI) - 90)};
+		animationRotations = new float[]{(float)(Math.atan2(xdiff, zdiff) * 180 / Math.PI) + 90 * (getFacing().getHorizontalIndex() + ((getFacing().getXOffset() == 0) ? 0 : 2)), (float) (Math.abs(Math.atan2(ydiff, xzdiff) * 180 / Math.PI) - 90)};
 	}
 
 	@Override

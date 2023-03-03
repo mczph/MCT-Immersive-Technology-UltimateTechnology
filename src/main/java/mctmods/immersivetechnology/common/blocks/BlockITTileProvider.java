@@ -377,7 +377,7 @@ public abstract class BlockITTileProvider<E extends Enum<E> & BlockITBase.IBlock
 	@Override
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
 		if(!world.isRemote) {
-			Chunk posChunk = world.getChunkFromBlockCoords(pos);
+			Chunk posChunk = world.getChunk(pos);
 			ApiUtils.addFutureServerTask(world, () -> {
 				if(world.isBlockLoaded(pos)&&!posChunk.unloadQueued) {
 					TileEntity tile = world.getTileEntity(pos);
@@ -512,7 +512,7 @@ public abstract class BlockITTileProvider<E extends Enum<E> & BlockITBase.IBlock
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+	public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
 		TileEntity te = world.getTileEntity(pos);
 		if(te instanceof TileEntityIEBase) ((TileEntityIEBase) te).onEntityCollision(world, entity);
 	}

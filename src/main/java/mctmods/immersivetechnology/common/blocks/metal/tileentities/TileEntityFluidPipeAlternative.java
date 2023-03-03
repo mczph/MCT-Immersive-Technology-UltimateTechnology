@@ -181,7 +181,7 @@ public class TileEntityFluidPipeAlternative extends blusunrize.immersiveengineer
 		if(sideConfig[side] > 0) sideConfig[side] = - 1;
 		markDirty();
 
-		EnumFacing fd = EnumFacing.getFront(side);
+		EnumFacing fd = EnumFacing.byIndex(side);
 		TileEntity connected = world.getTileEntity(getPos().offset(fd));
 
 		if(sideConfig[side] == 0) for(PipeFluidHandler handler : sidedHandlers) handler.enableSide(fd);

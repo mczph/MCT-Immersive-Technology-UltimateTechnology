@@ -108,7 +108,7 @@ public class TileEntityDistillerMaster extends TileEntityDistillerSlave implemen
 	}
 
 	public void efficientMarkDirty() { // !!!!!!! only use it within update() function !!!!!!!
-		world.getChunkFromBlockCoords(this.getPos()).markDirty();
+		world.getChunk(this.getPos()).markDirty();
 	}
 
 	@SuppressWarnings("unchecked")

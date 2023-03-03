@@ -55,7 +55,7 @@ public class TileEntityBarrel extends TileEntityCommonOSD implements IFluidTank,
 		super.update();
 		if(world.isRemote || infiniteFluid == null) return;
 		for(int index = 0; index < 6; index++) {
-			EnumFacing face = EnumFacing.getFront(index);
+			EnumFacing face = EnumFacing.byIndex(index);
 			IFluidHandler output = FluidUtil.getFluidHandler(world, getPos().offset(face), face.getOpposite());
 			if(output != null) {
 				TileEntity tile = Utils.getExistingTileEntity(world, getPos().offset(face));

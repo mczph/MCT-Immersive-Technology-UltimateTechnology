@@ -23,12 +23,12 @@ public class GenericMultiblockHelper implements IIngredientHelper<GenericMultibl
 
     @Override
     public String getUniqueId(GenericMultiblockIngredient genericMultiblockIngredient) {
-        return genericMultiblockIngredient.renderStack.getUnlocalizedName() + genericMultiblockIngredient.renderStack.getMetadata();
+        return genericMultiblockIngredient.renderStack.getTranslationKey() + genericMultiblockIngredient.renderStack.getMetadata();
     }
 
     @Override
     public String getWildcardId(GenericMultiblockIngredient genericMultiblockIngredient) {
-        return genericMultiblockIngredient.renderStack.getUnlocalizedName() + genericMultiblockIngredient.renderStack.getMetadata();
+        return genericMultiblockIngredient.renderStack.getTranslationKey() + genericMultiblockIngredient.renderStack.getMetadata();
     }
 
     @Override

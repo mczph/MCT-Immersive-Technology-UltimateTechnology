@@ -58,7 +58,7 @@ public class TileRenderSolarReflector extends TileEntitySpecialRenderer<TileEnti
 		tessellator.draw();
 
 		//Rotation just for the mirror
-		GlStateManager.rotate(te.getAnimationRotations()[1], te.getFacing().getFrontOffsetZ(), 0, te.getFacing().getFrontOffsetX());
+		GlStateManager.rotate(te.getAnimationRotations()[1], te.getFacing().getZOffset(), 0, te.getFacing().getXOffset());
 		//Draw the mirror
 		worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
 		worldRenderer.setTranslation(- .5 - blockPos.getX(), - .5 - blockPos.getY(), - .5 - blockPos.getZ());

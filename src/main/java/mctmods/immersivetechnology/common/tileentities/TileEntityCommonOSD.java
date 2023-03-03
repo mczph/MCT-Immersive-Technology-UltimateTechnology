@@ -21,7 +21,7 @@ public abstract class TileEntityCommonOSD extends TileEntityIEBase implements IT
 	public int secondCounter = 0;
 
 	public void efficientMarkDirty() {//!!!!!!! only use it within update() function !!!!!!!
-		world.getChunkFromBlockCoords(this.getPos()).markDirty();
+		world.getChunk(this.getPos()).markDirty();
 	}
 
 	@Override

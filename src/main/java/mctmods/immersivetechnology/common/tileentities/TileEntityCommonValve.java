@@ -65,7 +65,7 @@ public abstract class TileEntityCommonValve extends TileEntityIEBase implements 
 	public long[] packetTotals = new long[60];
 
 	public void efficientMarkDirty() {//!!!!!!! only use it within update() function !!!!!!!
-		world.getChunkFromBlockCoords(this.getPos()).markDirty();
+		world.getChunk(this.getPos()).markDirty();
 	}
 
 	public void calculateAverages() {
@@ -159,7 +159,7 @@ public abstract class TileEntityCommonValve extends TileEntityIEBase implements 
 
 	@Override
 	public void readCustomNBT(NBTTagCompound nbt, boolean descPacket) {
-		facing = EnumFacing.getFront(nbt.getByte("facing"));
+		facing = EnumFacing.byIndex(nbt.getByte("facing"));
 		packetLimit = nbt.getInteger("packetLimit");
 		timeLimit = nbt.getInteger("timeLimit");
 		keepSize = nbt.getInteger("keepSize");

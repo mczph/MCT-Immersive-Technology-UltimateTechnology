@@ -163,7 +163,7 @@ public class ITContent {
 			blockMetalDevice0Dummy = IEContent.blockMetalDevice0;
 			IEContent.blockMetalDevice0.setCreativeTab(null);
 			IEContent.blockMetalDevice0.setRegistryName("immersiveengineering", "metaldevice0dummy");
-			IEContent.blockMetalDevice0.setUnlocalizedName("immersiveengineering.metaldevice0dummy");
+			IEContent.blockMetalDevice0.setTranslationKey("immersiveengineering.metaldevice0dummy");
 			IEContent.registeredIEItems.remove(Item.getItemFromBlock(IEContent.blockMetalDevice0));
 			IEContent.registeredIEBlocks.remove(IEContent.blockMetalDevice0);
 			IEContent.blockMetalDevice0 = new BlockMetalDevice0();
@@ -171,7 +171,7 @@ public class ITContent {
 			blockMetalDevice1Dummy = IEContent.blockMetalDevice1;
 			IEContent.blockMetalDevice1.setCreativeTab(null);
 			IEContent.blockMetalDevice1.setRegistryName("immersiveengineering", "metaldevice1dummy");
-			IEContent.blockMetalDevice1.setUnlocalizedName("immersiveengineering.metaldevice1dummy");
+			IEContent.blockMetalDevice1.setTranslationKey("immersiveengineering.metaldevice1dummy");
 			IEContent.registeredIEItems.remove(Item.getItemFromBlock(IEContent.blockMetalDevice1));
 			IEContent.registeredIEBlocks.remove(IEContent.blockMetalDevice1);
 			IEContent.blockMetalDevice1 = new BlockMetalDevice1();
@@ -376,12 +376,12 @@ public class ITContent {
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		for(Block block : registeredITBlocks) event.getRegistry().register(block.setRegistryName(createRegistryName(block.getUnlocalizedName())));
+		for(Block block : registeredITBlocks) event.getRegistry().register(block.setRegistryName(createRegistryName(block.getTranslationKey())));
 	}
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		for(Item item : registeredITItems) event.getRegistry().register(item.setRegistryName(createRegistryName(item.getUnlocalizedName())));
+		for(Item item : registeredITItems) event.getRegistry().register(item.setRegistryName(createRegistryName(item.getTranslationKey())));
 		registerOres();
 	}
 

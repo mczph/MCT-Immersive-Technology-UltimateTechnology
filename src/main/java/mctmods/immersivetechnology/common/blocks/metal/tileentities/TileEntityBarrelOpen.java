@@ -56,7 +56,7 @@ public class TileEntityBarrelOpen extends TileEntityBarrelSteel {
 		for(int index = 0; index < 2; index++) {
 			if(tank.getFluidAmount() > 0 && sideConfig[index] == 1) {
 				if(tank.getFluidAmount() > 0) {
-					EnumFacing face = EnumFacing.getFront(index);
+					EnumFacing face = EnumFacing.byIndex(index);
 					IFluidHandler output = FluidUtil.getFluidHandler(world, getPos().offset(face), face.getOpposite());
 					if(output != null) {
 						if(sleep == 0) {

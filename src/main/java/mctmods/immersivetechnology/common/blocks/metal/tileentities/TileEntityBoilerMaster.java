@@ -174,7 +174,7 @@ public class TileEntityBoilerMaster extends TileEntityBoilerSlave implements ITF
 	}
 
 	public void efficientMarkDirty() { // !!!!!!! only use it within update() function !!!!!!!
-		world.getChunkFromBlockCoords(this.getPos()).markDirty();
+		world.getChunk(this.getPos()).markDirty();
 	}
 
 	private boolean heatLogic() {

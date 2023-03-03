@@ -237,7 +237,7 @@ public class TileEntitySolarTowerMaster extends TileEntitySolarTowerSlave implem
 	}
 
 	public void efficientMarkDirty() { // !!!!!!! only use it within update() function !!!!!!!
-		world.getChunkFromBlockCoords(this.getPos()).markDirty();
+		world.getChunk(this.getPos()).markDirty();
 	}
 
 	private boolean heatLogic() {

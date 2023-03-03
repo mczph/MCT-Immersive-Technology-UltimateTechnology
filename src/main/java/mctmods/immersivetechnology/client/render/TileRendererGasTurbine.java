@@ -45,7 +45,7 @@ public class TileRendererGasTurbine extends TileEntitySpecialRenderer<TileEntity
         } else {
             GlStateManager.shadeModel(7424);
         }
-        GlStateManager.rotate(te.getAnimation().getAnimationRotation() + (te.getAnimation().getAnimationMomentum() * partialTicks), te.facing.getFrontOffsetX(), 0, te.facing.getFrontOffsetZ());
+        GlStateManager.rotate(te.getAnimation().getAnimationRotation() + (te.getAnimation().getAnimationMomentum() * partialTicks), te.facing.getXOffset(), 0, te.facing.getZOffset());
         worldRenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
         worldRenderer.setTranslation(- .5 - blockPos.getX(), - .5 - blockPos.getY(), - .5 - blockPos.getZ());
         worldRenderer.color(255, 255, 255, 255);

@@ -102,7 +102,7 @@ public class TileEntityAlternatorMaster extends TileEntityAlternatorSlave implem
 	}
 
 	public void efficientMarkDirty() { // !!!!!!! only use it within update() function !!!!!!!
-		world.getChunkFromBlockCoords(this.getPos()).markDirty();
+		world.getChunk(this.getPos()).markDirty();
 	}
 
 	public void checkProvider() {

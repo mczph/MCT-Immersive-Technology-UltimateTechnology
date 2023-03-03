@@ -36,10 +36,10 @@ public class TileEntitySteelSheetmetalTankMaster extends TileEntitySteelSheetmet
 	@Override
 	public void update() {
 		if(world.isRemote || tank.getFluidAmount() == 0) return;
-		if(world.isBlockIndirectlyGettingPowered(getPos()) > 0) {
+		if(world.getRedstonePowerFromNeighbors(getPos()) > 0) {
 			for(int index = 0; index < 6; index++) {
 				if(index != 1) {
-					EnumFacing face = EnumFacing.getFront(index);
+					EnumFacing face = EnumFacing.byIndex(index);
 					IFluidHandler output = FluidUtil.getFluidHandler(world, getPos().offset(face), face.getOpposite());
 					if(output != null) {
 						FluidStack accepted = Utils.copyFluidStackWithAmount(tank.getFluid(), Math.min(transferSpeed, tank.getFluidAmount()), true);

@@ -8,12 +8,7 @@ buildscript {
 	}
 }
 
-ext.configFile = file "../common/common-1.12.properties"
-configFile.withReader {
-	def prop = new Properties()
-	prop.load(it)
-	ext.common = new ConfigSlurper().parse prop
-}
+
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
@@ -24,7 +19,7 @@ repositories {
     }
 }
 
-version = common.mcversion + "-" + modversion+ "." + modsubversion
+version = minecraft_version + "-" + modversion+ "." + modsubversion
 group = modgroup
 archivesBaseName = modarchivename
 
@@ -34,15 +29,15 @@ compileJava {
 }
 
 minecraft {
-	version = common.mcversion + "-" + common.forgeversion
-	mappings = common.mcp_mappings
+	version = "${minecraft_version}-${forge_version}"
+	mappings = "${mappings_version}"
 	runDir = "run"
 	replace '${version}', modversion+ "." + modsubversion
 }
 
 dependencies {
-	compile "curse.maven:${common.jei_version}"
-	deobfCompile "curse.maven:${common.imme_version}"
+	compile "curse.maven:jei-238222:4393461"
+	deobfCompile "curse.maven:immersive_engineering-231951:2974106"
 
 
 
@@ -50,24 +45,24 @@ dependencies {
 
 
 
-	compileOnly "curse.maven:${common.top_version}"
-	compileOnly "curse.maven:${common.hwya_version}"
+	compileOnly "curse.maven:the-one-probe-245211:2667280"
+	compileOnly "curse.maven:hwyla-253449:2568751"
 
-    compileOnly "curse.maven:${common.ar_version}"
-    compileOnly "curse.maven:${common.lv_version}"
+    compileOnly "curse.maven:advanced-rocketry-236542:3801020"
+    //compileOnly "curse.maven:${common.lv_version}"
 	
-	compileOnly "curse.maven:${common.crft_version}"
-	compileOnly "curse.maven:${common.opcm_version}"
+	compileOnly "curse.maven:CraftTweaker-239197:4403410"
+	compileOnly "curse.maven:OpenComputers-223008:3994462"
 }
 
 processResources {
 	inputs.property "version", project.modversion + "." + project.modsubversion
-	inputs.property "mcversion", project.minecraft.version
+	inputs.property "mcversion", minecraft_version
 
 	from(sourceSets.main.resources.srcDirs) {
 		include "mcmod.info"
 
-		expand "version":project.modversion + "." + project.modsubversion, "mcversion":project.minecraft.version
+		expand "version":project.modversion + "." + project.modsubversion, "mcversion":minecraft_version
 	}
 
 	from(sourceSets.main.resources.srcDirs) {

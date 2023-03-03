@@ -188,7 +188,7 @@ public class TileEntityMeltingCrucibleMaster extends TileEntityMeltingCrucibleSl
     }
 
     public void efficientMarkDirty() { // !!!!!!! only use it within update() function !!!!!!!
-        world.getChunkFromBlockCoords(this.getPos()).markDirty();
+        world.getChunk(this.getPos()).markDirty();
     }
 
     @Override
