@@ -20,6 +20,11 @@ import mctmods.immersivetechnology.common.blocks.metal.multiblocks.*;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.*;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.conversion.*;
 import mctmods.immersivetechnology.common.blocks.stone.BlockStoneDecoration;
+import mctmods.immersivetechnology.common.blocks.stone.BlockStoneMultiblock;
+import mctmods.immersivetechnology.common.blocks.stone.multiblocks.MultiblockCokeOvenAdvanced;
+import mctmods.immersivetechnology.common.blocks.stone.tileentities.TileEntityCokeOvenAdvancedMaster;
+import mctmods.immersivetechnology.common.blocks.stone.tileentities.TileEntityCokeOvenAdvancedSlave;
+import mctmods.immersivetechnology.common.blocks.stone.tileentities.conversion.TileEntityCokeOvenAdvanced;
 import mctmods.immersivetechnology.common.blocks.stone.types.BlockType_StoneDecoration;
 import mctmods.immersivetechnology.common.blocks.wooden.BlockWoodenCrate;
 import mctmods.immersivetechnology.common.blocks.wooden.tileentities.TileEntityCrate;
@@ -59,11 +64,13 @@ public class ITContent {
 	/*MULTIBLOCKS*/
 	public static BlockITBase<?> blockMetalMultiblock;
 	public static BlockITBase<?> blockMetalMultiblock1;
+	public static BlockITBase<?> blockStoneMultiblock;
 
 	/*CONNECTORS*/
 	public static BlockITBase<?> blockConnectors;
 
 	/*METAL*/
+	public static BlockITBase<?> blockMetalDevice;
 	public static BlockITBase<?> blockMetalTrash;
 	public static BlockITBase<?> blockMetalBarrel;
 	public static BlockITBase<?> blockValve;
@@ -113,6 +120,7 @@ public class ITContent {
 		/*MULTIBLOCKS*/
 		blockMetalMultiblock = new BlockMetalMultiblock();
 		blockMetalMultiblock1 = new blockMetalMultiblock1();
+		blockStoneMultiblock = new BlockStoneMultiblock();
 
 		/*CONNECTORS*/
 		blockConnectors = new BlockConnectors();
@@ -121,6 +129,8 @@ public class ITContent {
 		blockMetalTrash = new BlockMetalTrash();
 		blockMetalBarrel = new BlockMetalBarrel();
 		blockValve = new BlockValve();
+
+		if(Multiblock.enable_advancedCokeOven) blockMetalDevice = new BlockMetalDevice();
 
 		/*STONE*/
 		blockStoneDecoration = new BlockStoneDecoration();
@@ -135,7 +145,7 @@ public class ITContent {
 		fluidDistWater = new FluidColored("distwater", 0x7079E0, 1000, 1000, false);
 		fluidFlueGas = new FluidColored("fluegas", 0xFFFFFF, -100, 500, true);
 		fluidHighPressureSteam = new FluidColored("highpressuresteam", 0x606978, 1500, -300, 500, true);
-		fluidHotWater = new FluidColored("hot_spring_water", 0x0dffff, 350, 1000, 1000, false);
+		fluidHotWater = new FluidColored("hot_water", 0x0dffff, 350, 1000, 1000, false);
 		fluidMoltenSalt = new FluidColored("moltensalt", 0xc4c6c7, 1100, 2170, 10000);
 		fluidMoltenSodium = new FluidColored("moltensodium", 0xc2c2c2, 400, 927, 10000);
 		fluidSuperheatedMoltenSodium = new FluidColored("superheatedmoltensodium", 0xaea0a2, 927, 1000, 10000);
@@ -195,6 +205,7 @@ public class ITContent {
 		registerTile(TileEntityStackLimiter.class);
 
 		//MORE TEMPORARY STUFF
+		registerTile(TileEntityCokeOvenAdvanced.class);
 		registerTile(TileEntityAlternator.class);
 		registerTile(TileEntitySteamTurbine.class);
 		registerTile(TileEntityBoiler.class);
@@ -203,6 +214,13 @@ public class ITContent {
 		registerTile(TileEntitySolarReflector.class);
 		registerTile(TileEntityHighPressureSteamTurbine.class);
 
+		/*MULTIBLOCK TILE ENTITIES*/
+		if(Multiblock.enable_advancedCokeOven) {
+			registerTile(TileEntityCokeOvenAdvancedSlave.class);
+			registerTile(TileEntityCokeOvenAdvancedMaster.class);
+			MultiblockHandler.registerMultiblock(MultiblockCokeOvenAdvanced.instance);
+			registerTile(TileEntityCokeOvenPreheater.class);
+		}
 		if(Multiblock.enable_boiler) {
 			registerTile(TileEntityBoilerSlave.class);
 			registerTile(TileEntityBoilerMaster.class);
@@ -334,14 +352,14 @@ public class ITContent {
 			if(FluidRegistry.getFluid("kerosene") != null) GasTurbineRecipe.addFuel(new FluidStack(FluidRegistry.getFluid("fluegas"), 1000), new FluidStack(FluidRegistry.getFluid("kerosene"), 150), 10);
 		}
 		if(Multiblock.enable_coolingTower && Recipes.register_cooling_tower_recipes) {
-			CoolingTowerRecipe.addRecipe(new FluidStack(FluidRegistry.getFluid("water"), 2925), new FluidStack(FluidRegistry.getFluid("water"), 2925), new FluidStack(FluidRegistry.getFluid("water"), 2925), new FluidStack(FluidRegistry.getFluid("hot_spring_water"), 8100), new FluidStack(FluidRegistry.getFluid("water"), 900), 3);
+			CoolingTowerRecipe.addRecipe(new FluidStack(FluidRegistry.getFluid("water"), 2925), new FluidStack(FluidRegistry.getFluid("water"), 2925), new FluidStack(FluidRegistry.getFluid("water"), 2925), new FluidStack(FluidRegistry.getFluid("hot_water"), 8100), new FluidStack(FluidRegistry.getFluid("water"), 900), 3);
 		}
 		if(Multiblock.enable_heatExchanger && Recipes.register_heat_exchanger_recipes) {
 			HeatExchangerRecipe.addRecipe(new FluidStack(FluidRegistry.getFluid("steam"), 450), null, new FluidStack(FluidRegistry.WATER, 250), new FluidStack(FluidRegistry.getFluid("fluegas"), 1000), 640, 10);
 			HeatExchangerRecipe.addRecipe(new FluidStack(FluidRegistry.getFluid("steam"), 500), null, new FluidStack(FluidRegistry.getFluid("distwater"), 250), new FluidStack(FluidRegistry.getFluid("fluegas"), 1000), 640, 10);
 			HeatExchangerRecipe.addRecipe(new FluidStack(FluidRegistry.getFluid("steam"), 450), new FluidStack(FluidRegistry.getFluid("moltensodium"), 80), new FluidStack(FluidRegistry.WATER, 250), new FluidStack(FluidRegistry.getFluid("superheatedmoltensodium"), 80), 640, 10);
 			HeatExchangerRecipe.addRecipe(new FluidStack(FluidRegistry.getFluid("steam"), 500), new FluidStack(FluidRegistry.getFluid("moltensodium"), 80), new FluidStack(FluidRegistry.getFluid("distwater"), 250), new FluidStack(FluidRegistry.getFluid("superheatedmoltensodium"), 80), 640, 10);
-			HeatExchangerRecipe.addRecipe(new FluidStack(FluidRegistry.getFluid("distwater"), 250),  new FluidStack(FluidRegistry.getFluid("hot_spring_water"), 4500), new FluidStack(FluidRegistry.getFluid("exhauststeam"), 500), new FluidStack(FluidRegistry.getFluid("water"), 4500), 160, 5);
+			HeatExchangerRecipe.addRecipe(new FluidStack(FluidRegistry.getFluid("distwater"), 250),  new FluidStack(FluidRegistry.getFluid("hot_water"), 4500), new FluidStack(FluidRegistry.getFluid("exhauststeam"), 500), new FluidStack(FluidRegistry.getFluid("water"), 4500), 160, 5);
 		}
 		if(Multiblock.enable_highPressureSteamTurbine && Recipes.register_highPressureSteamTurbine_recipes) {
 			HighPressureSteamTurbineRecipe.addFuel(new FluidStack(FluidRegistry.getFluid("steam"), 100), new FluidStack(FluidRegistry.getFluid("highpressuresteam"), 100), 1);
@@ -403,6 +421,7 @@ public class ITContent {
 		Config.manual_int.put("alternator_energyStorage", Alternator.alternator_energy_capacitorSize);
 		Config.manual_int.put("alternator_energyPerTick", Alternator.alternator_energy_perTick);
 		Config.manual_double.put("boiler_cooldownTime", ((Boiler.boiler_heat_workingLevel / Boiler.boiler_progress_lossInTicks) / 20));
+		Config.manual_int.put("cokeOvenPreheater_consumption", CokeOvenPreheater.cokeOvenPreheater_energy_consumption);
 		Config.manual_int.put("solarTower_minRange", SolarReflector.solarReflector_minRange);
 		Config.manual_int.put("solarTower_maxRange", SolarReflector.solarReflector_maxRange);
 		Config.manual_int.put("steamTurbine_timeToMax", ((MechanicalEnergy.mechanicalEnergy_speed_max / SteamTurbine.steamTurbine_speed_gainPerTick) / 20));

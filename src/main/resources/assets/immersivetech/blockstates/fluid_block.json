@@ -30,9 +30,9 @@
 				"fluid": "highpressuresteam"
 			}
 		}],
-		"hot_spring_water": [{
+		"hot_water": [{
 			"custom": {
-				"fluid": "hot_spring_water"
+				"fluid": "hot_water"
 			}
 		}],
 		"moltensalt": [{

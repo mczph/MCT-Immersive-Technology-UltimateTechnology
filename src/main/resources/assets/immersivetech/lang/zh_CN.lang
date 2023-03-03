@@ -26,7 +26,7 @@ fluid.steam=蒸汽
 fluid.exhauststeam=余热蒸汽
 fluid.fluegas=燃烧废气
 fluid.highpressuresteam=高压蒸汽
-fluid.hot_spring_water=热水
+fluid.hot_water=热水
 fluid.moltensalt=熔融盐
 fluid.moltensodium=熔融钠
 fluid.superheatedmoltensodium=过热熔融钠
@@ -146,6 +146,11 @@ gui.immersivetech.stack_limiter.limitdestination=个物品在内置输出槽
 gui.immersivetech.generic_multiblock_jei_tooltip=查阅工程师手册进行搭建
 
 
+#STONE MULTIBLOCKS
+tile.immersivetech.stone_multiblock.coke_oven_advanced.name=高级焦炉
+tile.immersivetech.stone_multiblock.coke_oven_advanced_slave.name=高级焦炉
+
+
 #METAL MULTIBLOCKS
 desc.immersiveengineering.info.multiblock.IT:Distiller=蒸馏器
 desc.immersiveengineering.info.multiblock.IT:SolarTower=太阳能集热塔
@@ -163,6 +168,9 @@ desc.immersiveengineering.info.multiblock.IT:meltingCrucible=电熔炼炉
 desc.immersiveengineering.info.multiblock.IT:Radiator=散热板
 desc.immersiveengineering.info.multiblock.IT:SolarMelter=太阳能熔炼塔
 
+#STONE MULTIBLOCKS
+desc.immersiveengineering.info.multiblock.IT:CokeOvenAdvanced=高级焦炉
+
 
 #CONNECTORS
 tile.immersivetech.connectors.connectors_timer.name=红石计时器
@@ -171,6 +179,12 @@ tile.immersivetech.connectors.connectors_timer.name=红石计时器
 #MANUAL
 ie.manual.category.it_power.name=联合循环发电系统
 ie.manual.category.it.name=沉浸科技
+
+ie.manual.entry.advancedCokeOven.name=更高级的焦炉
+ie.manual.entry.advancedCokeOven.subtext=现在速度快多了
+ie.manual.entry.advancedCokeOven0=高级焦炉是一种多方块结构，能够让玩家快速的获取焦煤和杂酚油。<br>具体结构如上图所示，全部搭建完成后，使用工程师锤敲击位于正面中心位置的强化焦炉砖方块完成搭建。
+ie.manual.entry.advancedCokeOven1=它支持自动化的输入输出，也可以配合预热器来提供热空气，加快进度。<br>这个焦炉是用的强化砖构建而成的，极力推荐你将首次获取的钢材用于制作这个结构。<br>和强化高炉一样，焦煤从前端输出，杂酚油从后端输出。煤炭从顶部输入。
+ie.manual.entry.advancedCokeOven2=焦炉预热器可以用于加快煤炭的精炼速度。每个焦炉最多只能连接两个预热器，且只能连接在两侧端口。每个预热器都需要<config;i;cokeOvenPreheater_consumption>IF/t的能量供给才能运行。
 
 ie.manual.entry.alternator.name=交流发电机
 ie.manual.entry.alternator.subtext=让我们交流

@@ -88,7 +88,7 @@ public class JEIHelper implements IModPlugin {
 			cat.addCatalysts(registryIn);
 			modRegistry.handleRecipes(cat.getRecipeClass(), cat, cat.getRecipeCategoryUid());
 		}
-
+		if(Multiblock.enable_advancedCokeOven) modRegistry.addRecipeCatalyst(GenericMultiblockIngredient.COKE_OVEN_ADVANCED, "ie.cokeoven");
 		if(Multiblock.enable_distiller) modRegistry.addRecipes(new ArrayList<Object>((DistillerRecipe.recipeList)), "it.distiller");
 		if(Multiblock.enable_boiler) {
 			modRegistry.addRecipes(new ArrayList<Object>((BoilerRecipe.recipeList)), "it.boiler");

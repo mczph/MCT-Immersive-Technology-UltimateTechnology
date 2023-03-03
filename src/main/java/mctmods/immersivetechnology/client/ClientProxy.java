@@ -26,9 +26,12 @@ import mctmods.immersivetechnology.common.blocks.BlockITFluid;
 import mctmods.immersivetechnology.common.blocks.BlockValve.BlockType_Valve;
 import mctmods.immersivetechnology.common.blocks.connectors.tileentities.TileEntityTimer;
 import mctmods.immersivetechnology.common.blocks.connectors.types.BlockType_Connectors;
+import mctmods.immersivetechnology.common.blocks.metal.types.BlockType_MetalDevice;
+import mctmods.immersivetechnology.common.blocks.stone.multiblocks.MultiblockCokeOvenAdvanced;
 import mctmods.immersivetechnology.common.blocks.metal.multiblocks.*;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.*;
 import mctmods.immersivetechnology.common.blocks.metal.types.BlockType_MetalBarrel;
+import mctmods.immersivetechnology.common.blocks.stone.tileentities.TileEntityCokeOvenAdvancedMaster;
 import mctmods.immersivetechnology.common.items.ItemITBase;
 import mctmods.immersivetechnology.common.tileentities.TileEntityFluidValve;
 import mctmods.immersivetechnology.common.tileentities.TileEntityLoadController;
@@ -230,12 +233,15 @@ public class ClientProxy extends CommonProxy {
 		ImmersiveTechnology.packetHandler.registerMessage(MessageTileSync.HandlerServer.class, MessageTileSync.class, 0, Side.SERVER);
 		ImmersiveTechnology.packetHandler.registerMessage(MessageStopSound.HandlerClient.class, MessageStopSound.class, 1, Side.CLIENT);
 		ImmersiveTechnology.packetHandler.registerMessage(MessageRequestUpdate.HandlerClient.class, MessageRequestUpdate.class, 2, Side.CLIENT);
+		ImmersiveTechnology.packetHandler.registerMessage(MessageRequestUpdate.HandlerServer.class, MessageRequestUpdate.class, 2, Side.SERVER);
 		ImmersiveTechnology.packetHandler.registerMessage(BinaryMessageTileSync.HandlerClient.class, BinaryMessageTileSync.class, 3, Side.CLIENT);
 		ImmersiveTechnology.packetHandler.registerMessage(BinaryMessageTileSync.HandlerServer.class, BinaryMessageTileSync.class, 3, Side.SERVER);
 	}
 
 	@Override
 	public void postInit() {
+		if(Multiblock.enable_advancedCokeOven)
+			ManualHelper.addEntry("advancedCokeOven", CAT_IT, new ManualPageMultiblock(ManualHelper.getManual(), "advancedCokeOven0", MultiblockCokeOvenAdvanced.instance), new ManualPages.Text(ManualHelper.getManual(), "advancedCokeOven1"), new ManualPages.Crafting(ManualHelper.getManual(), "advancedCokeOven2", new ItemStack(ITContent.blockMetalDevice, 1, BlockType_MetalDevice.COKE_OVEN_PREHEATER.getMeta())));
 		if(Multiblock.enable_boiler)
 			ManualHelper.addEntry("boiler", CAT_POWER, new ManualPageMultiblock(ManualHelper.getManual(), "boiler0", MultiblockBoiler.instance), new ManualPages.Text(ManualHelper.getManual(), "boiler1"), new ManualPages.Text(ManualHelper.getManual(), "boiler2"));
 		if(Multiblock.enable_solarTower)
@@ -316,6 +322,7 @@ public class ClientProxy extends CommonProxy {
 		if(tile instanceof IGuiTile) {
 			Object gui = null;
 			if(ID == ITLib.GUIID_Boiler && tile instanceof TileEntityBoilerMaster) gui = new GuiBoiler(player.inventory, (TileEntityBoilerMaster) tile);
+			if(ID == ITLib.GUIID_Coke_oven_advanced && tile instanceof TileEntityCokeOvenAdvancedMaster) gui = new GuiCokeOvenAdvanced(player.inventory, (TileEntityCokeOvenAdvancedMaster) tile);
 			if(ID == ITLib.GUIID_Distiller && tile instanceof TileEntityDistillerMaster) gui = new GuiDistiller(player.inventory, (TileEntityDistillerMaster) tile);
 			if(ID == ITLib.GUIID_Solar_Tower && tile instanceof TileEntitySolarTowerMaster) gui = new GuiSolarTower(player.inventory, (TileEntitySolarTowerMaster) tile);
 			if(ID == ITLib.GUIID_Timer && tile instanceof TileEntityTimer) gui = new GuiTimer(player.inventory, (TileEntityTimer) tile);
